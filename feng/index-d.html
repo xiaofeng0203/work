@@ -60,17 +60,19 @@ window.onload=function(){
 
  
     oBtn.onclick = function(){
-        window.location.href='https://www.baidu.com/s?ie=utf-8&f=3&wd='+oInp.value+''; 
-    }
-
-   
-    oInp.onkeyup = function(ev){
-        var code = ev.charCode || ev.keyCode;//有些浏览器keyCode属性,部分浏览器是charCode)
-        if(code == 13){
-            window.location.href='https://www.baidu.com/s?ie=utf-8&f=3&wd='+oInp.value+'';
+        if(oInp.value != ''){
+        window.location.href='https://www.baidu.com/s?ie=utf-8&f=3&wd='+oInp.value+'';  
         }
     }
-    
+   
+    oInp.onkeyup = function(ev){
+        if(oInp.value !=''){
+            var code = ev.charCode || ev.keyCode;//有些浏览器keyCode属性,部分浏览器是charCode)
+            if(code == 13){
+                window.location.href='https://www.baidu.com/s?ie=utf-8&f=3&wd='+oInp.value+'';
+            }
+        }
+    }
     
 }
 </script>
