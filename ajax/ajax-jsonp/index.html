@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax-jsonp</title>
+</head>
+<!--
+JSONP: JSON with Padding
+1:script 标签,
+2:用script标签加载资源是没有跨域问题的
+3:在资源加载进来之前定义好一个函数,这个函数接收一个参数(数据),函数里面利用这个参数做一些事情,
+然后需要的时候通过script标签加载对应远程文件资源,当远程的文件资源被加载进来的时候,就会去执行我们前面定义好的函数,并且把数据当作这个函数的参数传入进去;
+4:当按钮点击的时候再去加载远程资源,让他执行;而不是一开始就执行,所在动态创建script标签.
+5:
+-->
+<script>
+window.onload = function(){
+    var oBtn = document.getElementById('btn');
+    oBtn.onclick = function(){
+        var oScript = document.creatElement('script');
+        oScript.src = 'getData.php?callback=fn3';
+        document.body.appendChild(oScript);
+    }
+}
+</script>
+<body> 
+    <input type="button" value="r按钮" id="btn">
+</body> 
+</html>

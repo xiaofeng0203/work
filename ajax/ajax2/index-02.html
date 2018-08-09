@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax基本原理</title>
+</head>
+<script>
+window.onload=function(){    
+   var oBtn = document.getElementById('btn');
+    oBtn.onclick = function(){
+        /*
+        1.创建一个ajax对象;
+        2.兼容性问题ie7以上没有问题
+        ie6以下  ActiveXObject('Microsoft.XMLHTTP')
+        
+        
+        
+        */
+        var xhr = null;
+        //做个IE6的兼容;
+        
+        if(window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+        }else{
+            xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        
+//        try{
+//            xhr = new XMLHttpRequest();
+//        }catch(e){
+//            xhr = new ActiveXObject('Microsoft.XMLHTTP');
+//        }
+        /*
+        表单:数据的提交
+        action:数据提交的地址,默认是当前页面
+        method:数据提交的方式,默认是get方式
+            1.get
+            把数据名称和数据值用=连接,如果有多个的话,那么他会把多个数据组合用&进行连接,然后把数据放到url?后面传到指定页面;
+            url长度限制的原因,我们不要通过get方式传递过多的数据
+            2.post
+            理论上是无限制;
+            
+        enctype:提交的数据格式,默认application/x-www-form-urlencoded
+        
+        open方法:三个参数:
+            1:打开方式
+            2:地址
+            3:是否异步
+                true异步:非阻塞  前面的代码不会影响后面代码的执行
+                false同步:阻塞  前面的代码会影响后面代码的执行
+        */
+        xhr.open('get','1.txt', true);
+        //提交  发送请求;
+        xhr.send();
+        //等待服务器返回内容
+        /*
+        readyState:代表ajax工作状态;有五个值 
+        0:未初始化,还没有调用open()方法
+        1:载入  已调用send()方法,正在发送请求
+        2:载入完成 send()方法完成,已收到全部响应内容
+        3 解析  正在解析响应内容
+        4 完成 响应内容解析完成,可以在客户端调用了
+        
+        
+        responseText: ajax请求的返回的内容就被存放到这个属性下面,它返回的值是字符串;
+        responseXML:返回XML形式的内容;
+        on readystate change:当状态值改变的时候触发;
+        
+        status:给我们提供的 服务器状态; http状态码;
+        2:成功
+        3:重定向
+        4:请求
+        5:代表服务器错误
+        */
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4){
+               if(xhr.status == 200){
+                    alert(xhr.responseText);
+               }else{
+                    alert('出错了,Err' + xhr.status);  
+               }
+                
+            }
+        }
+    }
+}
+</script>
+<body>
+    <form action="post.php" method="post">
+        <input type="text" name="username">
+        <input type="text" name="age">
+        <input type="submit" value="提交">
+    </form>
+    <input type="button" value="按钮" id="btn">
+</body>
+</html>

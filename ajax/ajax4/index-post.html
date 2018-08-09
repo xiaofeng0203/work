@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    
+</style>
+<script>
+window.onload = function(){
+    var oBtn = document.getElementById('btn');
+    
+    oBtn.onclick = function(){
+        var xhr = null;
+        try{
+            xhr = new XMLHttpRequest();
+        }catch(e){
+            xhr = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+        xhr.open('post', 'post.php', true);
+        /*
+        1.post 方式,它跟get是一样的,只不过数据放在send()里面作为参数传递
+        2.设置请求头,如
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        3.post没有缓存问题
+        4.无需编码,中文也没有问题,之前已经申明
+        
+        */
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');//申明发送的数据类型;
+        xhr.send('username=me&age=28');
+        
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    alert(xhr.responseText);
+                }else{
+                    console.log('错误,ERR:' + xhr.status);  
+                }    
+            }
+        }
+        
+    }
+    
+}
+</script>
+<body>
+    <input type="button" id="btn" value="按钮">
+</body>
+</html>

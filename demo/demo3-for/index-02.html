@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>生成一个V字形</title>
+</head>
+<style>
+	#box{position:relative;}
+	.list{position:absolute; width:50px; height:50px; background:blue; border:1px solid black; opacity:0.6; }	
+</style>
+<script>
+	window.onload=function(){
+		var oBox = document.getElementById('box');
+		var aList = oBox.getElementsByTagName('div');
+		var str = '';
+		var j=0;
+		
+		for(var i=0; i<9; i++){
+			str += '<div class="list">'+i+'</div>';
+		}
+		oBox.innerHTML = str;
+		for(var i=0; i<9; i++){
+			aList[i].style.left = i%10*53 + 'px';
+			aList[i].style.top = i%10*53 + 'px';
+			if(i > 4){
+				j++;
+				aList[i].style.top =4*53-j*53 + 'px';
+			}
+
+			
+//			if(i%10 == 0 ){
+//				j = i/10
+//			}
+//			aList[i].style.top = j*53 + 'px';
+		}
+		
+	}
+</script>
+<body>
+	<div id="box">
+		<div class="list"></div>		
+	</div>	
+</body>
+</html>

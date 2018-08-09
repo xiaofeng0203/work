@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    
+</style>
+<script>
+window.onload = function(){
+    var oBtn = document.getElementById('btn');
+    
+    oBtn.onclick = function(){
+        var xhr = null;
+        try{
+            xhr = new XMLHttpRequest();
+        }catch(e){
+            xhr = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+        /*
+        1.缓存问题;url?后面连接一个随机数,时间戳+new Date().getTime()
+        2.中文是乱码,编码encodeURI,如:
+        get.php?username='+encodeURI('风')+'&age=28&'+ new Date().getTime()
+        3.
+        */
+        
+        xhr.open('get', 'get.php?username='+encodeURI('风')+'&age=28&'+ new Date().getTime(), true);
+        xhr.send();
+        
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    alert(xhr.responseText);
+                }else{
+                    console.log('错误,ERR:' + xhr.status);  
+                }    
+            }
+        }
+        
+    }
+    
+}
+</script>
+<body>
+    <input type="button" id="btn" value="按钮">
+</body>
+</html>

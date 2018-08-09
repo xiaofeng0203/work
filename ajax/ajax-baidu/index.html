@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>仿百度功能的jsonp-课上案例 </title>
+</head>
+<!--
+http://suggestion.baidu.com/su?wd=d&cb=rgb;  百度接口
+
+https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=d&json=1&p=3&sid=1450_21096_26350_26922_20930&req=2&csor=1&cb=feng
+-->
+<style>
+    *{margin:0; padding:0;}
+    #inp{ width:300px; height:20px; border:1px solid yellow; padding:5px;}
+    #ul1{width:310px; border:1px solid black; display:none;}
+    ul li a{height:20px; text-decoration:none; padding:5px; font-size:14px; display:block; line-height:20px;}
+    li a:hover{background:red; color:white;}
+</style>
+<script>
+function rgb(data){
+    var oInp = document.getElementById('inp');
+    var oUl = document.getElementById('ul1');
+    var html = '';
+    if(data.s.length){
+        oUl.style.display = 'block';
+        for(var i=0; i<data.s.length; i++){
+            html += '<li><a href="http://www.baidu.com/s?wd='+data.s[i]+'">'+data.s[i]+'</a></li>'
+        }
+        oUl.innerHTML = html;
+    }else{
+        oUl.style.display = 'none';
+    }
+    
+}
+window.onload=function(){
+    var oInp = document.getElementById('inp');
+    var oBtn = document.getElementById('btn');
+    var oUl = document.getElementById('ul1');
+    var aLi = oUl.getElementsByTagName('li');
+    
+    oInp.onkeyup = function(){
+        if(this.value !=''){
+            var oScript = document.createElement('script');
+            oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value +'&cb=rgb';
+//            oScript.src ='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value+'&json=1&p=3&sid=1450_21096_26350_26922_20930&req=2&csor=1&cb=rgb';
+            document.body.appendChild(oScript);
+            oScript.onload = function(){
+                document.body.removeChild(oScript);
+                delete window[rgb];
+            }
+           }else{
+               oUl.style.display = 'none';
+           }
+ 
+    }
+    
+}    
+</script>
+<body>
+   <input type="text" id="inp">
+   <input type="button" value="搜索" id="btn">
+   <ul id='ul1'>
+<!--       <li><a href="">1111</a></li>-->
+   </ul>
+</body>
+</html>

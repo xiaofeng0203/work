@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>豆办跨域请求</title>
+</head>
+<style>
+    dl{border-bottom:1px dotted #000;}
+    dt{font-weight:bold}
+    dl dd img{width:100px; height:150px; border:1px solid black; display:block;}
+</style>
+<script>
+function $a(data){
+    console.log(data);
+    var oMsg = document.getElementById('msg');
+    var oList = document.getElementById('list');
+    
+    oMsg.innerHTML = data.title.$t +':'+ data['opensearch:totalResults'].$t;
+    var aEntry = data.entry;
+    var html = '';
+    for(var i=0; i<aEntry.length;i++){
+        html +='<dl><dt>'+aEntry[i].title.$t+'</dt><dd><img src="'+aEntry[i].link[2]['@href']+'" alt=""></dd></dl>';
+    }
+    oList.innerHTML = html;
+}
+window.onload = function(){
+    var oInp = document.getElementById('inp');
+    var oBtn = document.getElementById('btn');
+    var oMsg = document.getElementById('msg');
+    var oList = document.getElementById('list');
+    
+    oBtn.onclick = function(){
+        if(oInp.value != ''){
+            var oScript = document.createElement('script');
+            oScript.src = 'http://api.douban.com/book/subjects?q='+oInp.value+'&alt=xd&callback=$a'
+            document.body.appendChild(oScript);
+            }
+        }
+    }
+}    
+</script>
+<!--
+http://api.douban.com/book/subjects?q='+oInp.value+'&alt=xd&callback=fn&start-index=(当前页*每页显示的条数)&max-results=10'
+-->
+<body>
+    <input type="text" id="inp">
+    <input type="button" value="搜索" id="btn">
+    <p id="msg"></p>
+    <hr>
+    <div id="list">
+<!--
+        <dl>
+            <dt></dt>
+            <dd><img src="" alt=""></dd>
+        </dl>
+-->
+    </div>
+</body>
+</html>

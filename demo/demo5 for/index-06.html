@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标提示,找出Div元素</title>
+</head>
+<style>
+	*{margin:0; padding:0}
+    
+    li{list-style: none;}
+	.img{width:50px; height:50px; border:1px solid black; display:inline-block; }
+    ul{width:400px; margin-top:50px; background:#f2f2f2; float:left;}
+    ul li {text-align: center; float:left; margin: 5px 10px; position:relative}
+	ul li p{color:black; font-size:14px; text-align: center;}
+	ul li span{color:#ccc;}
+    .info{width:200px; height:100px; position:absolute; top:-80px; left:25px; font-size:12px; text-align: left; background:#fff; z-index: 1; border:1px solid #ccc; display:none;}
+    .info div{height:40px; background:yellow; padding:0 5px;}
+    
+</style>
+<script>
+window.onload=function(){
+//找到元素里的元素,可以用双for;    
+    var oUl = document.getElementById('pic');
+    var aLi = oUl.getElementsByTagName('li');
+    var leng = aLi.length;
+    var aDiv = null; //空
+//    aDiv = aLi[0].getElementsByTagName('div');
+//实现一个元素    
+//    aLi[0].onmouseover = function(){
+//        console.log(this.getElementsByTagName('div')[0])
+//        aDiv[0].style.display = 'block';
+//    }
+//    aLi[0].onmouseout = function(){
+//        aDiv[0].style.display = 'none';
+//    }
+//实现多个元素
+    for(var i=0; i<aLi.length; i++){
+        aLi[i].onmouseover = function(){
+            oDiv = this.getElementsByTagName('div')[0];
+            oDiv.style.display = 'block';
+        }
+        aLi[i].onmouseout = function(){
+            oDiv.style.display = 'none';
+        }
+    }
+}    
+</script>
+<body>
+	<h3>最新上线</h3>
+	<ul id="pic">
+		<li class="list">
+			<img class="img" src="" alt="1">
+			<p>娱乐观</p>
+			<span>新闻类</span>
+			<div class="info">
+                <div>
+                    <h3>搜狐汽车图库</h3>
+				    <span>生活</span>
+                </div>
+				<section>搜狐汔车是中国最具人气和影响力的门户网站,为您提供专业的汔车</section>
+			</div>
+		</li>
+        <li class="list">
+			<img class="img" src="" alt="1">
+			<p>娱乐观</p>
+			<span>新闻类</span>
+			<div class="info">
+                <div>
+                    <h3>搜狐汽车图库</h3>
+				    <span>生活</span>
+                </div>
+				<section>搜狐汔车是中国最具人气和影响力的门户网站,为您提供专业的汔车</section>
+			</div>
+		</li>
+        <li class="list">
+			<img class="img" src="" alt="1">
+			<p>娱乐观</p>
+			<span>新闻类</span>
+			<div class="info">
+                <div>
+                    <h3>搜狐汽车图库</h3>
+				    <span>生活</span>
+                </div>
+				<section>搜狐汔车是中国最具人气和影响力的门户网站,为您提供专业的汔车</section>
+			</div>
+		</li>        
+        <li class="list">
+			<img class="img" src="" alt="1">
+			<p>娱乐观</p>
+			<span>新闻类</span>
+			<div class="info">
+                <div>
+                    <h3>搜狐汽车图库</h3>
+				    <span>生活</span>
+                </div>
+				<section>搜狐汔车是中国最具人气和影响力的门户网站,为您提供专业的汔车</section>
+			</div>
+		</li>        
+        <li class="list">
+			<img class="img" src="" alt="1">
+			<p>娱乐观</p>
+			<span>新闻类</span>
+			<div class="info">
+                <div>
+                    <h3>搜狐汽车图库</h3>
+				    <span>生活</span>
+                </div>
+				<section>搜狐汔车是中国最具人气和影响力的门户网站,为您提供专业的汔车</section>
+			</div>
+		</li>        
+        <li class="list">
+			<img class="img" src="" alt="1">
+			<p>娱乐观</p>
+			<span>新闻类</span>
+			<div class="info">
+                <div>
+                    <h3>搜狐汽车图库</h3>
+				    <span>生活</span>
+                </div>
+				<section>搜狐汔车是中国最具人气和影响力的门户网站,为您提供专业的汔车</section>
+			</div>
+		</li>
+
+	</ul>
+</body>
+</html>

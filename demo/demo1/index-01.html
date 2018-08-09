@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>热身运动,innerhtml</title>
+</head>
+<style>
+    *{margin:0; padding:0;}
+    input,button{outline:none; border:none;}
+    body,i{font-style:normal; font-size:16px;}
+    li{list-style:none;}
+    .box{
+        width:300px;
+        height:450px;
+        margin:auto;
+        position:relative;
+        border:2px solid black;
+    }
+
+/*清除浮动*/
+.clearfix { *zoom: 1;} 
+.clearfix:before, .clearfix:after { display: table; line-height: 0; content: "";}
+.clearfix:after { clear: both;}
+.flt{float: left !important;}
+.frt{float: right !important;}
+/*the end*/    
+/*消息区*/
+    .box-ul{
+        height:394px;
+        padding:0 5px;
+        overflow:auto;
+    }
+    .box-ul li{
+        position:relative;
+        width:100%;
+        margin:5px 0px;
+        
+    }
+/*
+    .box-ul li i{
+        width:30px;
+        height:30px;
+        display:block;
+    }
+*/
+
+    .box-ul li .span1{
+        margin-left:32px;
+        float:left;    
+    }
+    .box-ul li .span2{
+        margin-right:32px;
+        float:right;
+    }
+    .box-ul li span{
+        background:#41d912;
+        border-radius:4px;
+        padding:5px;
+        min-height: 24px;
+        font-size:16px;
+    }
+/*发送区*/
+    .box-con{
+        position:absolute;
+        bottom:0;
+        width:300px;
+        height:35px;
+        border-top:1px solid #ccc;
+        padding:10px 0;
+        background:#fff;
+    }
+    i{ 
+        display:inline-block;
+        width:28px;
+        height:28px;
+        border:1px solid #ccc;
+        margin:0 5px;
+        vertical-align: middle;
+    }
+    .box-con input{
+        width:200px;
+        height:28px;
+        border:1px solid #ccc;
+        line-height:25px;
+    }
+    .box-con button{
+        padding:0 5px;
+        border-radius:2px;
+        border:1px solid #ccc;
+        line-height:28px;
+        cursor: pointer;
+    }
+/*头像*/
+    .img1{
+        position:absolute;
+        left:0;
+    }
+    .img2{
+        position:absolute;
+        right:0;
+    }
+    .frt{float:right}
+    .flt{float:left;}
+</style>
+<body>
+    <div class="box">
+        <ul id="boxUl" class="box-ul clearfix">
+<!--
+            <li class="flt">
+                <img src="a1.png" class="img1" alt="">
+                <span id="span" class="span1">嚼蜡明瞬时或功有眄或丰肿砑呀了好事牙事呀事牙事萝卜一茵一
+                </span>
+            </li>
+            <li class="frt">
+                <img src="a2.png" class="img2" alt="">
+                <span class="span2">ddda aaa</span> 
+            </li>
+-->
+        </ul>
+        <div class="box-con">
+            <i>
+                <img id="icon" src="a1.png" alt="">
+            </i>
+            <input id="input"  type="text" placeholder="请输入您想对我说的话">
+            <button id="btn">发送</button>
+        </div>
+    </div>
+</body>
+<script>
+    var icon = document.getElementById("icon");
+    var Input = document.getElementById("input");
+    var boxUl = document.getElementById("boxUl");
+    var btn = document.getElementById("btn");
+    var on =true;
+    console.log(input.value);
+    icon.onclick = function(){
+      if(on){
+        icon.src = "a2.png";
+        on = false;
+    }else{
+        icon.src = "a1.png";
+        on = true;
+    }
+    };
+    /*发送功能*/
+    btn.onclick = function(){
+        if(on){
+            boxUl.innerHTML += '<li class="flt"><img src="'+ icon.src + '" class="img1" alt=""><span        id="span" class="span1">' + Input.value + '</span></li>';
+        }else{
+            boxUl.innerHTML += '<li class="frt"><img src="'+ icon.src + '" class="img2" alt=""><span        id="span" class="span2">' + Input.value + '</span></li>';
+        } 
+        //保持滚动条在下面
+        boxUl.scrollTop = boxUl.scrollHeight;
+    }
+
+</script>
+</html>

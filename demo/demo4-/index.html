@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>增加移除class</title>
+</head>
+<style>
+    a{text-decoration:none}
+    .hover{color:red;}
+</style>
+<script>
+window.onload = function(){
+    var list = document.getElementById('list-num');
+    var a = list.getElementsByTagName('a');
+    for(var i=0; i<a.length; i++){
+        a[i].onclick = function(){
+            for(var i=0; i<a.length;i++){
+                a[i].className = '';   
+            }
+            this.className = 'hover';   
+        }
+    }     
+}
+       
+</script>
+<body>
+    <div id="list-num" class="box">
+        <a href="javascript:;" class="hover">小明</a>
+        <a href="javascript:;">小华</a>
+        <a href="javascript:;">小乐</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>豆办</title>
+</head>
+<style>
+    dl{border-bottom:1px dotted #000;} 
+    dt{font-weight: bold;}
+    dd{}
+</style>
+<script>
+window.onload = function(){
+    var oInp = document.getElementById('inp');
+    var oBtn = document.getElementById('btn');
+    var oMsg = document.getElementById('message');
+    var oList = document.getElementById('list');
+    oBtn.onclick = function(){
+        if(oInp.value !=''){
+            var oScript = document.createElement('srcript');
+            oScript.src = 'http://api.douban.com/book/subjects?q='+oInp.value+'&alt=xd&callback=fn1';
+            document.body.appenChild(oScript);
+        }
+    }
+}    
+</script>
+<body>
+    <input type="text" id="inp">
+    <input type="button" value="搜索" id="btn">
+    <p id="msg"></p>
+    <hr>
+    <dl>
+        <dt>ddd</dt>
+        <dd><img src="" alt=""></dd>
+    </dl>
+    
+</body>
+</html>
