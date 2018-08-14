@@ -8,8 +8,9 @@
 </head>
 <style>
     *{margin:0; padding:0;}
+    a{text-decoration:none;}
     body{overflow:hidden;}
-    .box{width:520px; margin:100px auto;}
+    #box{width:520px; margin:100px auto;}
     input{border:none;}
     li{list-style:none;}
     #inp{width:400px; height:26px; border:1px solid #ccc; padding:5px; padding:5px; outline:none; line-height:38px;}
@@ -17,8 +18,8 @@
     #btn{width:100px; height:38px; line-height:38px; background:#2d78f4; color:#fff; margin-left:-5px; cursor:pointer;}
     #btn:hover{background:#4791ff;}
     ul{border:1px solid black; width:410px; margin-top:-1px; display:none;}
-    ul li a{display:block; text-decoration:none; line-height:30px; padding-left:10px;}
-    ul a:hover {background:red; color:#fff;}
+    #box ul li a{display:block; line-height:30px; padding-left:10px;}
+    #box ul li a:hover {background:red; color:#fff;}
 </style>
 
 <script>
@@ -77,12 +78,16 @@ window.onload=function(){
 }
 </script>
 <body>
-    <div class="box">
+    <div>
+        <span>→</span>
+        <a href="http://xiaofeng0203.github.io">my blog</a>
+    </div>
+    <div id="box">
         <input type="text" id="inp">
         <input type="button" value="百度一下" id="btn">
         <ul id="ul1">
         </ul>
     </div>
-
+    
 </body>
 </html>
